@@ -1,20 +1,35 @@
 <h1>Restaurants#show</h1>
 <!-- <p>Find me in app/views/restaurants/show.html.erb</p> -->
-<h2><%= @restaurants.name %></h2>
-<h2><%= @restaurants.address %></h2>
-<h2><%= @restaurants.phone_number %></h2>
-<h2><%= @restaurants.category %></h2>
+<h2><%= @restaurant.name %></h2>
+<h2><%= @restaurant.address %></h2>
+<h2><%= @restaurant.phone_number %></h2>
+<h2><%= @restaurant.category %></h2>
 
 <div><%= link_to 'restaurants', restaurants_path %></div>
 
 <h4>Reviews</h4>
 <% @restaurant.reviews.each do |review| %>
-<li class=“list-group-item”><%= @review.content %></li>
+<li class="list-group-item">
+            <small>
+              <% count = 0 %>
+              <% 5.times do %>
+                <% if review.rating > count %>
+                  <i class="fas fa-star"></i>
+                <% else %>
+                  <i class="far fa-star"></i>
+                <% end %>
+                <% count += 1 %>
+              <% end %>
+            </small>
+            <p><%= review.content %> <%= review.rating %>/5</p>
+          </li>
 <% end %>
 </ul>
 </div>
 <div class= “pt-4”>
-<%= link_to “Add a review”, new_restaurant_review_path(@restaurant) %>
-</div>
-
-#reviews
+<%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+      <%= link_to "See all restaurants", restaurants_path %></div>
