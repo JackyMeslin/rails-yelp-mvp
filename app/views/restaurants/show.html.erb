@@ -1,7 +1,20 @@
 <h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<!-- <p>Find me in app/views/restaurants/show.html.erb</p> -->
+<h2><%= @restaurants.name %></h2>
+<h2><%= @restaurants.address %></h2>
+<h2><%= @restaurants.phone_number %></h2>
+<h2><%= @restaurants.category %></h2>
 
+<div><%= link_to 'restaurants', restaurants_path %></div>
 
-#detail
+<h4>Reviews</h4>
+<% @restaurant.reviews.each do |review| %>
+<li class=“list-group-item”><%= @review.content %></li>
+<% end %>
+</ul>
+</div>
+<div class= “pt-4”>
+<%= link_to “Add a review”, new_restaurant_review_path(@restaurant) %>
+</div>
 
 #reviews

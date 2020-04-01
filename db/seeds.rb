@@ -21,3 +21,9 @@ au_bol_de_riz.save!
 chez_gladines = Restaurant.new(name: "Chez Gladines", address: "Bruxelles", phone_number: "m'en fous", category: "belgian")
 chez_gladines.save!
 puts 'Finished!'
+
+puts 'Creating comments...'
+review1 = Review.new(content: "Top", rating: 5, restaurant_id: 5)
+review1.save!
+puts 'Finished!'
+
